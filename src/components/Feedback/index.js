@@ -1,11 +1,12 @@
 // Write your React code here.
 import {Component} from 'react'
+import FeedbackEmojis from '../FeedbackEmojis'
 import './index.css'
 
 class Feedback extends Component {
   state = {isClicked: false}
 
-  onButtonClick = () => {
+  buttonClicked = () => {
     // const {isClicked} = this.state
     this.setState(prevState => ({isClicked: !prevState.isClicked}))
   }
@@ -35,20 +36,11 @@ class Feedback extends Component {
               </h1>
               <ul className="emoji-container">
                 {emojis.map(eachEmoji => (
-                  <li>
-                    <button
-                      onClick={this.onButtonClick}
-                      className="button"
-                      type="button"
-                    >
-                      <img
-                        className="emoji"
-                        src={eachEmoji.imageUrl}
-                        alt={eachEmoji.name}
-                        key={eachEmoji.id}
-                      />
-                    </button>
-                  </li>
+                  <FeedbackEmojis
+                    emoji={eachEmoji}
+                    key={eachEmoji.id}
+                    buttonClicked={this.buttonClicked}
+                  />
                 ))}
               </ul>
             </div>
